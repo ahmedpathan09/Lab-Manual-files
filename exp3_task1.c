@@ -1,37 +1,42 @@
 #include <stdio.h>
 
-int main()
-{
-    int n, i;
-    int arr[100];
-    int max, min;
+int main() {
+    int choice;
+    float marks;
 
-    printf("Enter the number of elements in the array: ");
-    scanf("%d", &n);
+    menu:
+    printf("\n--- Student Grade & Result System ---\n");
+    printf("1. Check Grade\n2. Exit\nEnter choice: ");
+    scanf("%d", &choice);
 
-    printf("Enter %d elements:\n", n);
-    for (i = 0; i < n; i++)
-    {
-        scanf("%d", &arr[i]);
+    switch (choice) {
+        case 1:
+            printf("Enter marks (out of 100): ");
+            scanf("%f", &marks);
+
+            if (marks < 0 || marks > 100)
+                printf("Invalid marks!\n");
+            else if (marks >= 75)
+                printf("Result: Distinction (Grade A)\n");
+            else if (marks >= 60)
+                printf("Result: First Class (Grade B)\n");
+            else if (marks >= 50)
+                printf("Result: Second Class (Grade C)\n");
+            else if (marks >= 40)
+                printf("Result: Pass (Grade D)\n");
+            else
+                printf("Result: Fail\n");
+            
+            goto menu;
+
+        case 2:
+            printf("Exiting program.\n");
+            break;
+
+        default:
+            printf("Invalid choice!\n");
+            goto menu;
     }
-
-    max = arr[0];
-    min = arr[0];
-
-    for (i = 1; i < n; i++)
-    {
-        if (arr[i] > max)
-        {
-            max = arr[i];
-        }
-        if (arr[i] < min)
-        {
-            min = arr[i];
-        }
-    }
-
-    printf("Maximum element is: %d\n", max);
-    printf("Minimum element is: %d\n", min);
 
     return 0;
 }
